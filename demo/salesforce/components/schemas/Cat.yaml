@@ -1,0 +1,19 @@
+description: A representation of a cat
+allOf:
+  - $ref: ./Pet.yaml
+  - type: object
+    properties:
+      huntingSkill:
+        type:
+          - string
+          - boolean
+        description: The measured skill for hunting
+        default: lazy
+        example: adventurous
+        enum:
+          - clueless
+          - lazy
+          - adventurous
+          - aggressive
+    required:
+      - huntingSkill

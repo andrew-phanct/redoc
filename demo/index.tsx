@@ -2,22 +2,9 @@ import * as React from 'react';
 import { render } from 'react-dom';
 import styled from 'styled-components';
 import { RedocStandalone } from '../src';
-import ComboBox from './ComboBox';
-import FileInput from './components/FileInput';
 
-const DEFAULT_SPEC = 'openapi.yaml';
+const DEFAULT_SPEC = 'salesforce/openapi.yaml';
 const NEW_VERSION_SPEC = 'openapi-3-1.yaml';
-
-const demos = [
-  { value: NEW_VERSION_SPEC, label: 'Petstore OpenAPI 3.1' },
-  { value: 'https://api.apis.guru/v2/specs/instagram.com/1.0.0/swagger.yaml', label: 'Instagram' },
-  {
-    value: 'https://api.apis.guru/v2/specs/googleapis.com/calendar/v3/openapi.yaml',
-    label: 'Google Calendar',
-  },
-  { value: 'https://api.apis.guru/v2/specs/slack.com/1.7.0/openapi.yaml', label: 'Slack' },
-  { value: 'https://api.apis.guru/v2/specs/zoom.us/2.0.0/openapi.yaml', label: 'Zoom.us' },
-];
 
 class DemoApp extends React.Component<
   Record<string, unknown>,
@@ -93,30 +80,10 @@ class DemoApp extends React.Component<
         <Heading>
           <a href=".">
             <Logo
-              src="https://github.com/Redocly/redoc/raw/main/docs/images/redoc.png"
-              alt="Redoc logo"
+              src="https://backoffice.staging.manabie.io/images/manabie.png"
+              alt="Manabie logo"
             />
           </a>
-          <ControlsContainer>
-            <FileInput onUpload={this.handleUploadFile} />
-            <ComboBox
-              placeholder={'URL to a spec to try'}
-              options={demos}
-              onChange={this.handleChange}
-              value={specUrl === DEFAULT_SPEC ? '' : specUrl}
-            />
-            <CorsCheckbox title="Use CORS proxy">
-              <input id="cors_checkbox" type="checkbox" onChange={this.toggleCors} checked={cors} />
-              <label htmlFor="cors_checkbox">CORS</label>
-            </CorsCheckbox>
-          </ControlsContainer>
-          <iframe
-            src="https://ghbtns.com/github-btn.html?user=Redocly&amp;repo=redoc&amp;type=star&amp;count=true&amp;size=large"
-            frameBorder="0"
-            scrolling="0"
-            width="160px"
-            height="30px"
-          />
         </Heading>
         <RedocStandalone
           spec={this.state.spec}
@@ -129,27 +96,6 @@ class DemoApp extends React.Component<
 }
 
 /* ====== Styled components ====== */
-
-const ControlsContainer = styled.div`
-  display: flex;
-  justify-content: center;
-  flex: 1;
-  margin: 0 15px;
-  align-items: center;
-`;
-
-const CorsCheckbox = styled.div`
-  margin-left: 10px;
-  white-space: nowrap;
-
-  label {
-    font-size: 13px;
-  }
-
-  @media screen and (max-width: 550px) {
-    display: none;
-  }
-`;
 
 const Heading = styled.nav`
   position: sticky;
@@ -169,7 +115,7 @@ const Heading = styled.nav`
 
 const Logo = styled.img`
   height: 40px;
-  width: 124px;
+  width: 40px;
   display: inline-block;
   margin-right: 15px;
 

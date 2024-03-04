@@ -1,0 +1,15 @@
+post:
+  summary: Create new cat
+  description: Info about new cat
+  operationId: createdCat
+  tags:
+    - webhooks
+  requestBody:
+    description: Information about cat in the system
+    content:
+      multipart/form-data:
+        schema:
+          $ref: ./components/schemas/Cat.yaml
+  responses:
+    '200':
+      description: create Cat details

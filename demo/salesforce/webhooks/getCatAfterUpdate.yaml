@@ -1,0 +1,15 @@
+put:
+  summary: Get a cat details after update
+  description: Get a cat details after update
+  operationId: updatedCat
+  tags:
+    - webhooks
+  requestBody:
+    description: Information about cat in the system
+    content:
+      multipart/form-data:
+        schema:
+          $ref: ./components/schemas/Cat.yaml
+  responses:
+    '200':
+      description: update Cat details

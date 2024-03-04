@@ -1,0 +1,46 @@
+get:
+  tags:
+    - Order
+  summary: Get Student Course Subscription
+  description: >-
+    Retrieves  Student Course Subscription data from Manabie.
+  parameters:
+    - name: access_token
+      in: header
+      required: true
+      schema:
+        type: string
+      example: 'Bearer 00D5j00000Chdce!ARQAQLbZTaeGTECOqA_SAoceBcXPzIPti.JGShuWWDhVrGxf_yFXgFmMluZVlQxVsYPOLUNTFRfoWpGFY5bmrqZUKt2gw4Lc'
+    - name: id
+      in: path
+      required: true
+      description: Get the student course subscription data by Id.
+      schema:
+        type: string
+        example: '0012v00002Qn3ZAAAZ'
+  x-codeSamples:
+    - lang: 'curl'
+      source: |
+        curl https://your-instance.salesforce.com/services/apexrest/StudentCourseSubscription/01GJHKWAM23B3FJDWY9S1QKBCG \
+        -H "Authorization: Bearer <access_token>" \
+        -H "Content-Type: application/json"
+
+  responses:
+    '200':
+      description: A specific package that match the criteria.
+      content:
+        application/json:
+          schema:
+            $ref: ../../components/schemas/StudentCourseSubscription.yaml
+    '400':
+      description: Bad request. Possible reasons include missing required fields or incorrect values.
+    '401':
+      description: Unauthorized. Authentication credentials are missing or incorrect.
+    '403':
+      description: Forbidden. You do not have permission to access the requested resource.
+    '404':
+      description: Not found. The specified resource does not exist.
+    '405':
+      description: Method not allowed. The method specified in the request is not allowed.
+    '429':
+      description: Too many requests. The request was rejected because the rate limit has been exceeded.

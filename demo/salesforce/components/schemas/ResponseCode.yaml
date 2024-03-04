@@ -1,0 +1,12 @@
+'400':
+  description: Bad request. Possible reasons include missing required fields or incorrect values.
+'401':
+  description: Unauthorized. Authentication credentials are missing or incorrect.
+'403':
+  description: Forbidden. You do not have permission to access the requested resource.
+'404':
+  description: Not found. The specified resource does not exist.
+'405':
+  description: Method not allowed. The method specified in the request is not allowed.
+'429':
+  description: Too many requests. The request was rejected because the rate limit has been exceeded.

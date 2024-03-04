@@ -76,7 +76,6 @@ export default (env: { playground?: boolean; bench?: boolean } = {}, { mode }) =
         test: /\.(tsx?|[cm]?js)$/,
         loader: 'esbuild-loader',
         options: {
-          target: 'es2015',
           tsconfigRaw: require('../tsconfig.json'),
         },
         exclude: [/node_modules/],

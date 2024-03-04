@@ -1,0 +1,8 @@
+content:
+  application/json:
+    schema:
+      description: Timesheet Lesson Entry
+      title: Timesheet Lesson Entry
+      $ref: ../schemas/TimesheetLessonAffiliation.yaml
+description: Timesheet Lesson Entry object that needs to be added to the TimesheetLessonAffiliation
+required: true

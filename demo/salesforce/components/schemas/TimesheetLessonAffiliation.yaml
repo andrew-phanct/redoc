@@ -1,0 +1,58 @@
+type: object
+required:
+  - staff_id
+  - lesson_status
+  - lesson_date
+  - lesson_start_time
+  - lesson_end_time
+  - lesson_method
+  - lesson_location
+  - manabie_course_id
+properties:
+  staff_id:
+    description: pass in manabie staffID
+    type: string
+    example: '01H68QBGB6P3VNZ77SJ1QK'
+  lesson_status:
+    description: 'Pass in the Completed and Cancelled lessons only (i.e., value = 3 or 4)'
+    type: integer
+    enum:
+      - 1 # Draft
+      - 2 # Published
+      - 3 # Completed
+      - 4 # Cancelled
+    example: 3
+  lesson_date:
+    description: 'yyyy/mm/dd format for the lesson date'
+    type: string
+    example: '2023-04-01'
+  lesson_start_time:
+    description: 'Lesson start time in "HH:MM" format'
+    type: string
+    example: '13:00'
+  lesson_end_time:
+    description: 'Lesson end time in "HH:MM" format'
+    type: string
+    example: '14:00'
+  lesson_method:
+    description: '1 only (Individual)'
+    type: integer
+    example: 1
+  lesson_location:
+    description: pass in manabie locationID
+    type: string
+    example: 'ManabieTokyoOffice1'
+  remarks:
+    description: 'Free text field for additional notes or cancellation reasons'
+    type: string
+    example: 'Student was ill'
+  linked_lesson_id:
+    description: 'Pass in Labsys Lecture ID'
+    type: string
+    example: 'Lecture123'
+  manabie_course_id:
+    description: 'Pass in manabie courseID'
+    type: string
+    example: 'Course789'
+xml:
+  name: TimesheetLessonAffiliation
