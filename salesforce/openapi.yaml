@@ -6,13 +6,6 @@ servers:
     description: Sandbox server
 info:
   description: >
-    This is a Salesforce server.
-
-    You can find out more about Salesforce at
-
-    [https://www.salesforce.com](https://www.salesforce.com).
-
-
     # Introduction
 
     This API is documented in **OpenAPI format** and is based on
@@ -20,15 +13,6 @@ info:
     Salesforce's RESTful API. It was designed to allow developers to create,
     retrieve, update or delete records, such as accounts, leads, and custom
     objects.
-
-
-    # OpenAPI Specification
-
-    This API is documented in **OpenAPI format** and is based on
-
-    Salesforce's RESTful API. It provides a powerful, convenient, and simple
-    REST-based web services interface for interacting with Salesforce.
-
 
     # Cross-Origin Resource Sharing
 
@@ -40,43 +24,17 @@ info:
     All responses have a wildcard same-origin which makes them completely public
     and accessible to everyone, including any code on any site.
 
-
-    # Authentication
-
-
-    Salesforce offers OAuth 2.0 for authentication:
-
-    OAuth2 - an open protocol to allow secure authorization in a simple
-
-    and standard method from web, mobile and desktop applications.
-
-
-    For Salesforce Authentication with Service-To-Service Integration, which
-    requires additional steps and implementation to obtain the JWT Token and use
-    it to obtain the Access token.
-
-    Please refer to the [Salesforce
-    documentation](https://help.salesforce.com/s/articleView?id=sf.remoteaccess_oauth_jwt_flow.htm&language=en_US&type=5).
   version: 1.0.0
   title: Manabie API Documentation
   termsOfService: http://swagger.io/terms/
     <SecurityDefinitions />
-  contact:
-    name: API Support
-    email: <email_support>
-    url: https://github.com/Redocly/redoc
   x-logo:
     url: 'https://backoffice.staging.manabie.io/images/manabie.png'
     altText: Manabie logo
-    width: 50
-    height: 50
   license:
     name: Apache 2.0
     url: http://www.apache.org/licenses/LICENSE-2.0.html
     identifier: Apache 2.0
-externalDocs:
-  description: Find out how to create Github repo for your OpenAPI spec.
-  url: https://github.com/Rebilly/generator-openapi-repo
 tags:
   - name: Authentication
     description: >
@@ -136,8 +94,6 @@ x-tagGroups:
   - name: General
     tags:
       - Authentication
-      - pet
-      # - store
       - Webhooks
   - name: Master Data API
     tags:
