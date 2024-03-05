@@ -77,14 +77,6 @@ class DemoApp extends React.Component<
     }
     return (
       <>
-        <Heading>
-          <a href=".">
-            <Logo
-              src="https://backoffice.staging.manabie.io/images/manabie.png"
-              alt="Manabie logo"
-            />
-          </a>
-        </Heading>
         <RedocStandalone
           spec={this.state.spec}
           specUrl={proxiedUrl}
@@ -96,33 +88,6 @@ class DemoApp extends React.Component<
 }
 
 /* ====== Styled components ====== */
-
-const Heading = styled.nav`
-  position: sticky;
-  top: 0;
-  width: 100%;
-  height: 50px;
-  box-sizing: border-box;
-  background: white;
-  border-bottom: 1px solid #cccccc;
-  z-index: 10;
-  padding: 5px;
-
-  display: flex;
-  align-items: center;
-  font-family: Roboto, sans-serif;
-`;
-
-const Logo = styled.img`
-  height: 40px;
-  width: 40px;
-  display: inline-block;
-  margin-right: 15px;
-
-  @media screen and (max-width: 950px) {
-    display: none;
-  }
-`;
 
 render(<DemoApp />, document.getElementById('container'));
 

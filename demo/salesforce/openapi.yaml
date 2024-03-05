@@ -65,6 +65,11 @@ info:
     name: API Support
     email: <email_support>
     url: https://github.com/Redocly/redoc
+  x-logo:
+    url: 'https://backoffice.staging.manabie.io/images/manabie.png'
+    altText: Manabie logo
+    width: 50
+    height: 50
   license:
     name: Apache 2.0
     url: http://www.apache.org/licenses/LICENSE-2.0.html
@@ -109,10 +114,6 @@ tags:
     description: Operations about user
   - name: Timesheet
     description: Operations about user
-  - name: pet
-    description: Everything about your Pets
-  - name: store
-    description: Access to Petstore orders
   - name: Webhooks
     description: Everything about your Webhooks
   - name: CourseModel
@@ -169,77 +170,17 @@ paths:
     $ref: paths/master/package_{package_id}.yaml
   /services/apexrest/Course/:id:
     $ref: paths/master/course_{course_id}.yaml
-  /services/apexrest/StudentCourseSubscription/:id:
+  /services/apexrest/Order/:id:
     $ref: paths/order/student_course_subscription_{id}.yaml
+  /services/apexrest/Order/updated/?start_date={start_date}&end_date={end_date}:
+    $ref: paths/order/order_{findByDateRange}.yaml
   /services/apexrest/Student/:id:
     $ref: paths/user/student_{id}.yaml
   /services/apexrest/Staff/:id:
     $ref: paths/user/staff_{id}.yaml
   /services/apexrest/Timesheet/createTimesheetLessonEntry:
     $ref: paths/timesheet/timesheet_lesson_affiliation.yaml
-  /pet:
-    $ref: paths/pet.yaml
-  /pet/{petId}:
-    $ref: paths/pet_{petId}.yaml
-  /pet/{petId}/uploadImage:
-    $ref: paths/pet_{petId}_uploadImage.yaml
-  /pet/findByStatus:
-    $ref: paths/pet_findByStatus.yaml
-  /pet/findByTags:
-    $ref: paths/pet_findByTags.yaml
-  /store/inventory:
-    $ref: paths/store_inventory.yaml
-  /store/order:
-    $ref: paths/store_order.yaml
-  /store/order/{orderId}:
-    $ref: paths/store_order_{orderId}.yaml
-  /store/subscribe:
-    $ref: paths/store_subscribe.yaml
-  /user:
-    $ref: paths/user.yaml
-  /user/{username}:
-    $ref: paths/user_{username}.yaml
-  /user/createWithArray:
-    $ref: paths/user_createWithArray.yaml
-  /user/createWithList:
-    $ref: paths/user_createWithList.yaml
-  /user/login:
-    $ref: paths/user_login.yaml
-  /user/logout:
-    $ref: paths/user_logout.yaml
 components:
-  # pathItems:
-  #   webhooks:
-  #     put:
-  #       summary: Get a cat details after update
-  #       description: Get a cat details after update
-  #       operationId: updatedCat
-  #       tags:
-  #         - webhooks
-  #       requestBody:
-  #         description: Information about cat in the system
-  #         content:
-  #           multipart/form-data:
-  #             schema:
-  #               $ref: ./components/schemas/Cat.yaml
-  #       responses:
-  #         '200':
-  #           description: update Cat details
-  #     post:
-  #       summary: Create new cat
-  #       description: Info about new cat
-  #       operationId: createdCat
-  #       tags:
-  #         - webhooks
-  #       requestBody:
-  #         description: Information about cat in the system
-  #         content:
-  #           multipart/form-data:
-  #             schema:
-  #               $ref: ./components/schemas/Cat.yaml
-  #       responses:
-  #         '200':
-  #           description: create Cat details
   securitySchemes:
     petstore_auth:
       description: |
@@ -292,14 +233,3 @@ components:
         id_token:
           type: string
           description: The ID token JWT string.
-# webhooks:
-# newPet:
-#   $ref: webhooks/newPet.yaml
-# newCat:
-#   $ref: webhooks/newCat.yaml
-# getCatAfterUpdate:
-#    $ref: webhooks/getCatAfterUpdate.yaml
-# myWebhook:
-#   $ref: '#/components/pathItems/webhooks'
-#   description: Overriding description
-#   summary: Overriding summary

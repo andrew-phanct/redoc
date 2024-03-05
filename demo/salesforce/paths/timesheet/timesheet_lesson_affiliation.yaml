@@ -21,11 +21,8 @@ post:
     '405':
       description: Invalid input
   x-codeSamples:
-    - lang: C#
+    - lang: Java
       source:
-        $ref: ../../code_samples/C_sharp/pet/post.cs
-    - lang: PHP
-      source:
-        $ref: ../../code_samples/PHP/pet/post.php
+        $ref: ../../code_samples/Java/timesheet/post.java
   requestBody:
     $ref: ../../components/requestBodies/TimesheetLessonAffiliation.yaml
