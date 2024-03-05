@@ -1,0 +1,28 @@
+post:
+  tags:
+    - Timesheet
+  summary: Add a new timesheet lesson entry
+  description: Add a new timesheet lesson entry
+  operationId: addTimesheetLessonEntry
+  parameters:
+    - name: access_token
+      in: header
+      required: true
+      schema:
+        type: string
+      example: 'Bearer 00D5j00000Chdce!ARQAQLbZTaeGTECOqA_SAoceBcXPzIPti.JGShuWWDhVrGxf_yFXgFmMluZVlQxVsYPOLUNTFRfoWpGFY5bmrqZUKt2gw4Lc'
+  responses:
+    '200':
+      description: successful operation
+      content:
+        application/json:
+          schema:
+            $ref: ../../components/schemas/ApexResponse.yaml
+    '405':
+      description: Invalid input
+  x-codeSamples:
+    - lang: Java
+      source:
+        $ref: ../../code_samples/Java/timesheet/post.java
+  requestBody:
+    $ref: ../../components/requestBodies/TimesheetLessonAffiliation.yaml

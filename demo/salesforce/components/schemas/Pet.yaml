@@ -1,0 +1,87 @@
+type: object
+required:
+  - name
+  - photoUrls
+discriminator:
+  propertyName: petType
+  mapping:
+    cat: ./Cat.yaml
+    dog: ./Dog.yaml
+    bee: ./HoneyBee.yaml
+    Cat: ./Cat.yaml
+    Dog: ./Dog.yaml
+    HoneyBee: ./HoneyBee.yaml
+properties:
+  id:
+    externalDocs:
+      description: Find more info here
+      url: https://example.com
+    description: Pet ID
+    $ref: ./Id.yaml
+  category:
+    description: Categories this pet belongs to
+    $ref: ./Category.yaml
+  name:
+    description: The name given to a pet
+    type: string
+    example: Guru
+  photoUrls:
+    description: The list of URL to a cute photos featuring pet
+    type:
+      - string
+      - integer
+      - 'null'
+    minItems: 1
+    maxItems: 10
+    default: []
+    xml:
+      name: photoUrl
+      wrapped: true
+    items:
+      type: string
+      format: url
+    if:
+      x-displayName: isString
+      type: string
+    then:
+      minItems: 1
+      maxItems: 15
+    else:
+      x-displayName: notString
+      type:
+        - integer
+        - 'null'
+      minItems: 1
+      maxItems: 20
+  friend:
+    $ref: ./Pet.yaml
+  tags:
+    description: Tags attached to the pet
+    type: array
+    exclusiveMaximum: 100
+    exclusiveMinimum: 0
+    xml:
+      name: tag
+      wrapped: true
+    items:
+      $ref: ./Tag.yaml
+  status:
+    type: string
+    description: Pet status in the store
+    enum:
+      - available
+      - pending
+      - sold
+    default: pending
+  petType:
+    description: Type of a pet
+    type: string
+  huntingSkill:
+    type:
+      - integer
+    enum:
+      - 0
+      - 1
+      - 2
+xml:
+  name: Pet

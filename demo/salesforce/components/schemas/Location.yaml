@@ -1,0 +1,31 @@
+type: object
+properties:
+  location_id:
+    description: その場所の一意の識別子。(Manabie UUID)
+    type: string
+    maxLength: 50
+    example: '0012v00002Qn3ZAAAZ'
+  partner_internal_id:
+    description: 外部システムと連携するための外部ID
+    type: string
+    example: '200'
+  name:
+    description: 拠点（校舎）名
+    type: string
+    example: 'ゼミ江東'
+  location_type:
+    description: 教室、ブランド、組織
+    type: string
+    example: 'centre'
+  parent_id:
+    description: 拠点の親ID（例）locationID 100（組織）はlocationID 200の親
+    type: string
+    example: 100
+  created_date:
+    type: string
+    example: '24/11/2023, 1:27 pm'
+  updated_date:
+    type: string
+    example: '7/2/2024, 9:43 am'
+xml:
+  name: Location

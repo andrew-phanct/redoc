@@ -1,0 +1,53 @@
+get:
+  tags:
+    - Order
+  summary: Retrieve order list within given date range
+  description: >-
+    Retrieve order list within given date range
+  parameters:
+    - name: access_token
+      in: header
+      required: true
+      schema:
+        type: string
+      example: 'Bearer 00D5j00000Chdce!ARQAQLbZTaeGTECOqA_SAoceBcXPzIPti.JGShuWWDhVrGxf_yFXgFmMluZVlQxVsYPOLUNTFRfoWpGFY5bmrqZUKt2gw4Lc'
+    - name: start_date
+      in: path
+      required: true
+      description: Get the order being updated from start_date.
+      schema:
+        type: datetime
+        example: '2024-03-05T00:00:00Z'
+    - name: end_date
+      in: path
+      required: true
+      description: Get the order being updated till end_date.
+      schema:
+        type: datetime
+        example: '2024-04-05T00:00:00Z'
+  x-codeSamples:
+    - lang: 'curl'
+      source: |
+        curl https://your-instance.salesforce.com/services/apexrest/Order/updated/?start_date=2024-03-05T00:00:00Z&end_date=2024-04-05T00:00:00Z \
+        -H "Authorization: Bearer <access_token>" \
+        -H "Content-Type: application/json"
+
+  responses:
+    '200':
+      description: A specific package that match the criteria.
+      content:
+        application/json:
+          schema:
+            $ref: ../../components/schemas/StudentCourseSubscription.yaml
+    '400':
+      description: Bad request. Possible reasons include missing required fields or incorrect values.
+    '401':
+      description: Unauthorized. Authentication credentials are missing or incorrect.
+    '403':
+      description: Forbidden. You do not have permission to access the requested resource.
+    '404':
+      description: Not found. The specified resource does not exist.
+    '405':
+      description: Method not allowed. The method specified in the request is not allowed.
+    '429':
+      description: Too many requests. The request was rejected because the rate limit has been exceeded.

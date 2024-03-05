@@ -4,9 +4,10 @@ import styled from '../../styled-components';
 export const LogoImgEl = styled.img`
   max-height: ${props => props.theme.logo.maxHeight};
   max-width: ${props => props.theme.logo.maxWidth};
-  padding: ${props => props.theme.logo.gutter};
-  width: 100%;
+  width: 60%;
   display: block;
+  clip-path: circle();
+  margin: 10px auto;
 `;
 
 export const LogoWrap = styled.div`

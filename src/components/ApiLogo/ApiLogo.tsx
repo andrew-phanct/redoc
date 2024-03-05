@@ -20,7 +20,7 @@ export class ApiLogo extends React.Component<{ info: OpenAPIInfo }> {
     const logo = <LogoImgEl src={logoInfo.url} alt={altText} />;
     return (
       <LogoWrap style={{ backgroundColor: logoInfo.backgroundColor }}>
-        {logoHref ? LinkWrap(logoHref)(logo) : logo}
+        {logoHref ? logo : logo}
       </LogoWrap>
     );
   }
