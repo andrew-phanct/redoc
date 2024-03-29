@@ -1,0 +1,53 @@
+get:
+  tags:
+    - User
+  summary: Find Staff By Ids
+  description: >-
+    Retrieves Staff data from Manabie. This can be a single Staff or multiple Staffs request.
+  parameters:
+    - name: access_token
+      in: header
+      required: true
+      schema:
+        type: string
+      example: 'Bearer 00D5j00000Chdce!ARQAQLbZTaeGTECOqA_SAoceBcXPzIPti.JGShuWWDhVrGxf_yFXgFmMluZVlQxVsYPOLUNTFRfoWpGFY5bmrqZUKt2gw4Lc'
+    - name: q
+      in: query
+      required: true
+      description: Staff query with list of Staff Ids.
+      schema:
+        type: string
+        example: "'SELECT Id, LastName, FirstName, MANAERP__Last_Name_Phonetic__c, MANAERP__First_Name_Phonetic__c, Email, MANAERP__Working_Status__c, MANAERP__Start_Date__c, MANAERP__End_Date__c, (SELECT MANAERP__Account__c FROM MANAERP__Affiliations__r), (SELECT MANAERP__Course_Master__c FROM MANAERP__Eligible_Course__r) FROM Contact WHERE RecordType.Name = 'Staff' AND ID IN ('0035h00001HrTwuAAF','0035h00001HrTwuAAF')'"
+  x-codeSamples:
+    - lang: 'curl'
+      source: |
+        curl --location 'https://staging-manabie.my.salesforce.com/services/data/v60.0/query/?q=SELECT%20Id%2C%20LastName%2C%20FirstName%2C%20MANAERP__Last_Name_Phonetic__c%2C%20MANAERP__First_Name_Phonetic__c%2C%20Email%2C%20MANAERP__Working_Status__c%2C%20MANAERP__Start_Date__c%2C%20MANAERP__End_Date__c%2C%20CreatedDate%2C%20LastModifiedDate%2C%20(SELECT%20MANAERP__Account__c%20FROM%20MANAERP__Affiliations__r)%20MANAERP__Account__c%2C%20(SELECT%20MANAERP__Course_Master__c%20FROM%20MANAERP__Eligible_Course__r)%20FROM%20Contact%20WHERE%20RecordType.DeveloperName%20%3D%20%27Staff%27%20AND%20ID%20IN%20(%270035h00001HrTwuAAF%27%2C%270035h00001HrTwuAAF%27)' \
+        --header 'Content-Type: application/json' \
+        --header 'Authorization: Bearer 00D5h000008tozT!ARgAQOqKuj35G0J3hdlyRdoh1HCFBWQOFfrlNzq0YOAj9I9_eshdA3WwRYO_f.kQn4GWfMYPYnrbPtUUhTLJ.jwj_o7Ea40a' \
+        --header 'Cookie: BrowserId=nSWJoj7LEe6CKW252xCFWA; CookieConsentPolicy=0:1; LSKey-c$CookieConsentPolicy=0:1'
+
+  responses:
+    '200':
+      description: A specific package that match the criteria.
+      content:
+        application/json:
+          schema:
+            $ref: ../../components/schemas/MANAERP_Staff.yaml
+    '400':
+      $ref: '../../components/response/error.yaml#/400'
+    '401':
+      $ref: '../../components/response/error.yaml#/401'
+    '403':
+      $ref: '../../components/response/error.yaml#/403'
+    '404':
+      $ref: '../../components/response/error.yaml#/404'
+    '405':
+      $ref: '../../components/response/error.yaml#/405'
+    '408':
+      $ref: '../../components/response/error.yaml#/408'
+    '429':
+      $ref: '../../components/response/error.yaml#/429'
+    '500':
+      $ref: '../../components/response/error.yaml#/500'
+    '503':
+      $ref: '../../components/response/error.yaml#/503'

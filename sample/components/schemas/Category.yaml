@@ -1,0 +1,18 @@
+type: object
+properties:
+  id:
+    description: Category ID
+    $ref: ./Id.yaml
+  name:
+    description: Category name
+    type: string
+    minLength: 1
+  sub:
+    description: Test Sub Category
+    type: object
+    properties:
+      prop1:
+        type: string
+        description: Dumb Property
+xml:
+  name: Category

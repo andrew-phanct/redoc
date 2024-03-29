@@ -1,0 +1,52 @@
+get:
+  tags:
+    - Order
+  summary: Find student course subscription by Id
+  description: >-
+    Retrieve the student course subscription data by invalid.
+  parameters:
+    - name: access_token
+      in: header
+      required: true
+      schema:
+        type: string
+      example: 'Bearer 00D5j00000Chdce!ARQAQLbZTaeGTECOqA_SAoceBcXPzIPti.JGShuWWDhVrGxf_yFXgFmMluZVlQxVsYPOLUNTFRfoWpGFY5bmrqZUKt2gw4Lc'
+    - name: id
+      in: path
+      required: true
+      description: Get the student course subscription data by Id.
+      schema:
+        type: string
+        example: '0012v00002Qn3ZAAAZ'
+  x-codeSamples:
+    - lang: 'curl'
+      source: |
+        curl https://your-instance.salesforce.com/services/apexrest/StudentCourseSubscription/01GJHKWAM23B3FJDWY9S1QKBCG \
+        -H "Authorization: Bearer <access_token>" \
+        -H "Content-Type: application/json"
+
+  responses:
+    '200':
+      description: A specific package that match the criteria.
+      content:
+        application/json:
+          schema:
+            $ref: ../../components/schemas/StudentCourseSubscription.yaml
+    '400':
+      $ref: '../../components/response/error.yaml#/400'
+    '401':
+      $ref: '../../components/response/error.yaml#/401'
+    '403':
+      $ref: '../../components/response/error.yaml#/403'
+    '404':
+      $ref: '../../components/response/error.yaml#/404'
+    '405':
+      $ref: '../../components/response/error.yaml#/405'
+    '408':
+      $ref: '../../components/response/error.yaml#/408'
+    '429':
+      $ref: '../../components/response/error.yaml#/429'
+    '500':
+      $ref: '../../components/response/error.yaml#/500'
+    '503':
+      $ref: '../../components/response/error.yaml#/503'

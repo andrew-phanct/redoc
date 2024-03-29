@@ -1,0 +1,111 @@
+type: object
+properties:
+  package_id:
+    # type: string
+    # example: '0012v00002Qn3ZAAAZ'
+    # description: The unique identifier for the location.
+    description: その場所の一意の識別子。(Manabie UUID)
+    type: string
+    maxLength: 50
+    example: '01GM80KJCWDV5FXXK4HYQ8HVPB'
+  name:
+    description: 外部システムと連携するための外部ID
+    type: string
+    example: '200'
+  package_type:
+    description: |
+      1 = 1回限りのコース。つまり、1レッスンのみのコース
+      2 = 開始日から終了日までのX回のスロットがあるコース
+      3 = 例えば、10週間にわたり週1回行われるコース
+      4 = 開始日と終了日のみ
+
+      週次でコマ数が決まっているタイプor全体でコマ数が決まっているタイプ
+    type: string
+    example: 'PACKAGE_TYPE_ONE_TIME'
+  tax_id:
+    description: Tax IDはmanabieの税マスターにリンクしている
+    type: string
+    example: '01GM80DV06D8G7WG9ADFEB1BRX'
+  product_tag:
+    description: 商品を分類するために商品タグマスターに設定された自由な値
+    type: string
+    example: 'Tagname1'
+  product_partner_id:
+    description: Partnerの商品IDと関連付けるために使用
+    type: string
+    example: 'PartnerID123'
+  available_from:
+    type: string
+    example: '24/11/2023, 1:27 pm'
+  available_until:
+    type: string
+    example: '7/2/2024, 9:43 am'
+  min_slot:
+    description: |
+      min_slot = 3
+      max_slot = 5
+      slot = 3 OR 4 OR 5
+    type: integer
+    example: 3
+  max_slot:
+    description: 商品タイプ2および3にのみ該当 スロットベースの商品の最大スロット数と頻度を定義
+    type: integer
+    example: 5
+  custom_billing_period:
+    description: |
+      商品タイプ1および2にのみ該当
+      - 日付は、収益がいつ認識されるかを決定する (将来の会計機能をサポート)
+    type: string
+    example: '2023-01-17T17:00:00Z'
+  billing_schedule_id:
+    description: 商品タイプ3および4にのみ該当
+    type: string
+    example: 'a8c57e84-4e96-47ab-9157-aa7697f3ab6c'
+  disable_pro_rating_flag:
+    description: |
+      商品タイプ3および4にのみ該当
+      値 = 1 または 0
+    type: integer
+    example: 1
+  package_start_date:
+    description: |
+      "商品タイプ1および2にのみ該当
+      生徒にコースが割り当てられる開始日"
+    type: string
+    example: '2022-11-01T23:00:00Z'
+  package_end_date:
+    description: |
+      "商品タイプ1および2にのみ該当
+      生徒にコースが割り当てられる開始日"
+    type: string
+    example: '2022-11-01T23:00:00Z'
+  remarks:
+    description: 拠点の親ID（例）locationID 100（組織）はlocationID 200の親
+    type: string
+    example: 100
+  is_archived:
+    description: |
+      0または1のみ
+      アーカイブ済（1）はその商品が使用されていないことを意味する
+    type: integer
+    example: 0
+  is_unique:
+    description: 0または1のみ
+    type: integer
+    example: 0
+  product_code:
+    description: manabie内部使用 - 学年度とマッピングするために使用
+    type: string
+    example: 123
+  academic_year_id:
+    description: |
+      学年度と商品の関連付け
+      例：123 <> AY2023
+    type: string
+    example: 'AY2024'
+  created_date:
+    type: string
+    example: '24/11/2023, 1:27 pm'
+  updated_date:
+    type: string
+    example: '24/11/2023, 1:27 pm'

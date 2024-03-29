@@ -1,0 +1,156 @@
+type: object
+properties:
+  totalSize:
+    type: integer
+    description: Total number of records. / レコードの総数。
+    example: 151
+  done:
+    type: boolean
+    description: Indicates whether the query is complete. / クエリが完了したかどうかを示します。
+    example: true
+  records:
+    type: array
+    description: Array of student records. / 学生レコードの配列。
+    items:
+      type: object
+      properties:
+        attributes:
+          type: object
+          description: Attributes of the student record. / 学生レコードの属性。
+          properties:
+            type:
+              type: string
+              description: Salesforce Object Type. / Salesforceオブジェクトタイプ。
+              example: "Contact"
+            url:
+              type: string
+              description: Salesforce Record URL. / SalesforceレコードURL。
+              example: "/services/data/v60.0/sobjects/Contact/0035h00001OwJDPAA3"
+        Id:
+          type: string
+          description: Salesforce RecordId. / SalesforceレコードID。
+          example: "0035h00001OwJDPAA3"
+        LastName:
+          type: string
+          description: Last Name. / 姓。
+          example: "Mar 21"
+        FirstName:
+          type: string
+          description: First Name. / 名。
+          example: "Carlo Student C"
+        MANAERP__Last_Name_Phonetic__c:
+          type: string
+          description: Last Name Phonetic. / 姓（フリガナ）。
+          nullable: true
+        MANAERP__First_Name_Phonetic__c:
+          type: string
+          description: First Name Phonetic. / 名（フリガナ）。
+          nullable: true
+        Email:
+          type: string
+          description: Email Address. / メールアドレス。
+          nullable: true
+        MANAERP__Username__c:
+          type: string
+          description: Username. / ユーザー名。
+          example: "24000110"
+        GenderIdentity:
+          type: string
+          description: Gender Identity. / 性別。
+          nullable: true
+        MANAERP__Tag__c:
+          type: string
+          description: Tag. / タグ。
+          nullable: true
+        MANAERP__Grade__r:
+          type: object
+          description: Grade details. / 成績詳細。
+          properties:
+            attributes:
+              type: object
+              description: Attributes of the grade. / 成績の属性。
+              properties:
+                type:
+                  type: string
+                  description: Salesforce Object Type. / Salesforceオブジェクトタイプ。
+                  example: "MANAERP__Grade__c"
+                url:
+                  type: string
+                  description: Salesforce Record URL. / SalesforceレコードURL。
+                  example: "/services/data/v60.0/sobjects/MANAERP__Grade__c/a0N5h00000DYprbEAD"
+            MANAERP__Partner_Internal_Id__c:
+              type: string
+              description: Partner Internal Id. / パートナー内部ID。
+              example: "Grade_9"
+            Name:
+              type: string
+              description: Name. / 名前。
+              example: "Grade 9"
+        CreatedDate:
+          type: string
+          description: Created Date. / 作成日。
+          example: "2024-03-21T06:32:07.000+0000"
+        LastModifiedDate:
+          type: string
+          description: Last Modified Date. / 最終更新日。
+          example: "2024-03-21T06:32:07.000+0000"
+        MANAERP__Enrollments__r:
+          type: string
+          description: Enrollments. / 登録。
+          nullable: true
+        MANAERP__School_Histories__r:
+          type: object
+          description: School Histories. / 学校の歴史。
+          properties:
+            totalSize:
+              type: integer
+              description: Total number of records. / レコードの総数。
+              example: 1
+            done:
+              type: boolean
+              description: Indicates whether the query is complete. / クエリが完了したかどうかを示します。
+              example: true
+            records:
+              type: array
+              description: Array of school history records. / 学校の歴史レコードの配列。
+              items:
+                type: object
+                properties:
+                  attributes:
+                    type: object
+                    description: Attributes of the school history record. / 学校の歴史レコードの属性。
+                    properties:
+                      type:
+                        type: string
+                        description: Salesforce Object Type. / Salesforceオブジェクトタイプ。
+                        example: "MANAERP__School_History__c"
+                      url:
+                        type: string
+                        description: Salesforce Record URL. / SalesforceレコードURL。
+                        example: "/services/data/v60.0/sobjects/MANAERP__School_History__c/a0y5h000003ErcsAAC"
+                  MANAERP__School__c:
+                    type: string
+                    description: School Id. / 学校ID。
+                    example: "a0z5h0000084UFYAA2"
+                  MANAERP__School__r:
+                    type: object
+                    description: School details. / 学校詳細。
+                    properties:
+                      attributes:
+                        type: object
+                        description: Attributes of the school. / 学校の属性。
+                        properties:
+                          type:
+                            type: string
+                            description: Salesforce Object Type. / Salesforceオブジェクトタイプ。
+                            example: "MANAERP__School__c"
+                          url:
+                            type: string
+                            description: Salesforce Record URL. / SalesforceレコードURL。
+                            example: "/services/data/v60.0/sobjects/MANAERP__School__c/a0z5h0000084UFYAA2"
+                      Name:
+                        type: string
+                        description: Name. / 名前。
+                        example: "Carlo School A - 2024/03/21"
+xml:
+  name: MANAERP_Student

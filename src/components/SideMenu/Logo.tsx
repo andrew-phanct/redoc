@@ -8,11 +8,5 @@ export default function RedoclyLogo(): JSX.Element | null {
     setDisplay(true);
   }, []);
 
-  return isDisplay ? (
-    <img
-      alt={'redocly logo'}
-      onError={() => setDisplay(false)}
-      src={'https://cdn.redoc.ly/redoc/logo-mini.svg'}
-    />
-  ) : null;
+  return null;
 }

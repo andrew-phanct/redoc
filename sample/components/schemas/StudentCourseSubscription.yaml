@@ -1,0 +1,60 @@
+type: object
+properties:
+  order_id:
+    description: Manabie UUID - これは学生のサブスクリプションコースのIDです。
+    type: string
+    example: '01GJ0XH7WXRMCVKXJZJBVRSRGH'
+  student_id:
+    description: Manabie UUID
+    type: string
+    example: 'KXJVZJBVRSRGHO1GVSRGH01GVSRGH01GV'
+  location_id:
+    description: Manabie UUID
+    type: string
+    example: 'VSRGH01GVVSRGH01GVSRGH01GV'
+  package_id:
+    description: パッケージIDから、学習管理情報などを取得できます（getPackageMasterを参照）
+    type: string
+    example: 'RVSRGHWMRCVKXJZJBVRSRGH'
+  course_id:
+    description: Course_idから、subjectIDを取得できます（getCourseMasterを参照）
+    type: string
+    example: '1GV0H7XH7WXRMCVKXJZJBVRSRGH0'
+  course_name:
+    description: コース名
+    type: string
+    example: 'A'
+  course_slot:
+    description: プランタイムスロット-授業回数、注文資料など多くの基礎となる情報の日付に基づいています
+    type: string
+    example: 'one-time'
+  student_start_date:
+    description: 受講開始日-受講開始日は、ユーザーが選択した日付と常に一致します
+    type: string
+    example: '2023-04-01T07:00:00+0700'
+  student_end_date:
+    description: 受講終了日-クローズ状態、またはmanabieのstudent_end_dateをschool_left_dateとして使用します。
+    type: string
+    example: '2023-08-30T07:00:00+0700'
+  updated_Date:
+    description: 更新された日付をschool_left_dateとして使用する。
+    type: string
+    example: '2023-08-30T07:00:00+0700'
+  created_Date:
+    description: 作成日
+    type: string
+    example: '2023-08-30T07:00:00+0700'
+  remarks:
+    description: フリーテキスト
+    type: string
+    example: 'abc'
+  order_status:
+    description: 注文状態を表す。ENROLLMENT時はPotential => Enrolledとして表現されます。
+    type: string
+    example: 'Draft'
+  order_type:
+    description: 注文タイプ。LOA = Leave of Absence
+    type: string
+    example: 'Regular'
+xml:
+  name: StudentCourseSubscription

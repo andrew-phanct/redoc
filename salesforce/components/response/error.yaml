@@ -1,0 +1,171 @@
+'400':
+  description: Bad request. Possible reasons include missing required fields or incorrect values.
+  content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            status:
+              type: integer
+              description: HTTP status code
+              example: 400
+            error:
+              type: string
+              description: Short error code or identifier
+              example: Bad request
+            message:
+              type: string
+              description: Possible reasons include missing required fields or incorrect values.
+              example: The request is missing a required parameter, includes an unsupported parameter value, or is otherwise malformed.
+'401':
+  description: Unauthorized. Authentication credentials are missing or incorrect.
+  content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            status:
+              type: integer
+              description: HTTP status code
+              example: 401
+            error:
+              type: string
+              description: Short error code or identifier
+              example: Unauthorized
+            message:
+              type: string
+              description: Authentication credentials are missing or incorrect.
+              example: Authentication credentials are missing or incorrect.
+'403':
+  description: Forbidden. You do not have permission to access the requested resource.
+  content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            status:
+              type: integer
+              description: HTTP status code
+              example: 403
+            error:
+              type: string
+              description: Short error code or identifier
+              example: Forbidden
+            message:
+              type: string
+              description: You do not have permission to access the requested resource.
+              example: The request was valid, but you do not have the necessary permissions to access the resource.
+'404':
+  description: Not found. The specified resource does not exist.
+  content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            status:
+              type: integer
+              description: HTTP status code
+              example: 404
+            error:
+              type: string
+              description: Short error code or identifier
+              example: Not Found
+            message:
+              type: string
+              description: The specified resource does not exist.
+              example: The requested resource was not found on this server.
+'405':
+  description: Method not allowed. The method specified in the request is not allowed.
+  content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            status:
+              type: integer
+              description: HTTP status code
+              example: 405
+            error:
+              type: string
+              description: Short error code or identifier
+              example: Method not allowed
+            message:
+              type: string
+              description: The method specified in the request is not allowed.
+              example: The requested method GET is not allowed for the URL /api/resource.
+'408':
+  description: Request Timeout. The server did not receive a complete request message within the time that it was prepared to wait.
+  content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            status:
+              type: integer
+              description: HTTP status code
+              example: 408
+            error:
+              type: string
+              description: Short error code or identifier
+              example: Request Timeout
+            message:
+              type: string
+              description: The server did not receive a complete request message within the time that it was prepared to wait.
+              example: The server timed out waiting for the request.
+'429':
+  description: Too many requests. The request was rejected because the rate limit has been exceeded.
+  content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            status:
+              type: integer
+              description: HTTP status code
+              example: 429
+            error:
+              type: string
+              description: Short error code or identifier
+              example: Too many requests.
+            message:
+              type: string
+              description: The request was rejected because the rate limit has been exceeded.
+              example: You have exceeded the rate limit. Please try again later.
+'500':
+  description: Internal Server Error. The server encountered an unexpected condition that prevented it from fulfilling the request.
+  content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            status:
+              type: integer
+              description: HTTP status code
+              example: 500
+            error:
+              type: string
+              description: Short error code or identifier
+              example: Internal Server Error
+            message:
+              type: string
+              description: The server encountered an unexpected condition that prevented it from fulfilling the request.
+              example: The server encountered an unexpected condition that prevented it from fulfilling the request.
+'503':
+  description: Service Unavailable. The server is not ready to handle the request. Common causes are a server that is down for maintenance or that is overloaded.
+  content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            status:
+              type: integer
+              description: HTTP status code
+              example: 503
+            error:
+              type: string
+              description: Short error code or identifier
+              example: Service Unavailable
+            message:
+              type: string
+              description: The server is not ready to handle the request. Common causes are a server that is down for maintenance or that is overloaded.
+              example: The server is currently unable to handle the request due to a temporary overloading or maintenance

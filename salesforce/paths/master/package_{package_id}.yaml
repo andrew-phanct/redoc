@@ -1,9 +1,9 @@
 get:
   tags:
     - Package
-  summary: Get Package
+  summary: Find package by ID
   description: >-
-    Retrieves package master data from Manabie.
+    Retrieve the master data of a specific package by package_id. The package_id is a unique identifier for a package in the system.
   parameters:
     - name: access_token
       in: header
@@ -33,14 +33,20 @@ get:
           schema:
             $ref: ../../components/schemas/Package.yaml
     '400':
-      description: Bad request. Possible reasons include missing required fields or incorrect values.
+      $ref: '../../components/response/error.yaml#/400'
     '401':
-      description: Unauthorized. Authentication credentials are missing or incorrect.
+      $ref: '../../components/response/error.yaml#/401'
     '403':
-      description: Forbidden. You do not have permission to access the requested resource.
+      $ref: '../../components/response/error.yaml#/403'
     '404':
-      description: Not found. The specified resource does not exist.
+      $ref: '../../components/response/error.yaml#/404'
     '405':
-      description: Method not allowed. The method specified in the request is not allowed.
+      $ref: '../../components/response/error.yaml#/405'
+    '408':
+      $ref: '../../components/response/error.yaml#/408'
     '429':
-      description: Too many requests. The request was rejected because the rate limit has been exceeded.
+      $ref: '../../components/response/error.yaml#/429'
+    '500':
+      $ref: '../../components/response/error.yaml#/500'
+    '503':
+      $ref: '../../components/response/error.yaml#/503'

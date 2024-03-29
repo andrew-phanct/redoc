@@ -1,0 +1,83 @@
+get:
+  tags:
+    - Order
+  summary: Get List of Student Course Subscription
+  description: |
+    Retrieves a list of student course subscriptions that are available in the system.
+    ### Sorting Criteria
+    To ensure consistency and relevancy of the data returned,
+    records are primarily sorted by the <b>order_id</b> field in ascending order.
+    ### Sorting Order
+    order_id ASC
+    </br>
+  parameters:
+    - name: access_token
+      in: header
+      required: true
+      schema:
+        type: string
+      example: 'Bearer 00D5j00000Chdce!ARQAQLbZTaeGTECOqA_SAoceBcXPzIPti.JGShuWWDhVrGxf_yFXgFmMluZVlQxVsYPOLUNTFRfoWpGFY5bmrqZUKt2gw4Lc'
+    - name: limit
+      in: query
+      description: The maximum number of results to return.
+      schema:
+        type: integer
+        default: 100
+        maximum: 1000
+        example: 100
+    - name: cursor
+      in: query
+      description: The cursor for the next set of results.
+      schema:
+        type: string
+        nullable: true
+        required: false
+        example: '507f1f77bcf86cd799439011'
+  x-codeSamples:
+    - lang: 'curl'
+      source: |
+        # Get the first 100 packages
+        curl https://your-instance.salesforce.com/services/apexrest/StudentCourseSubscription/getList?limit=100 \
+        -H "Authorization: Bearer <access_token>" \
+        -H "Content-Type: application/json"
+
+        # Get the next 100 packages
+        curl https://your-instance.salesforce.com/services/apexrest/StudentCourseSubscription/getList?limit=100&curosr=507f1f77bcf86cd799439011 \
+        -H "Authorization: Bearer <access_token>" \
+        -H "Content-Type: application/json"
+  responses:
+    '200':
+      description: A list of packages that match the criteria.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              items:
+                type: array
+                items:
+                  $ref: ../../components/schemas/StudentCourseSubscription.yaml
+              next_cursor:
+                type: string
+                description: The cursor for the next set of results.
+                nullable: true
+                example: '507f1f77bcf86cd799439011'
+    '400':
+      $ref: '../../components/response/error.yaml#/400'
+    '401':
+      $ref: '../../components/response/error.yaml#/401'
+    '403':
+      $ref: '../../components/response/error.yaml#/403'
+    '404':
+      $ref: '../../components/response/error.yaml#/404'
+    '405':
+      $ref: '../../components/response/error.yaml#/405'
+    '408':
+      $ref: '../../components/response/error.yaml#/408'
+    '429':
+      $ref: '../../components/response/error.yaml#/429'
+    '500':
+      $ref: '../../components/response/error.yaml#/500'
+    '503':
+      $ref: '../../components/response/error.yaml#/503'
+

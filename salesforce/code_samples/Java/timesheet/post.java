@@ -1,3 +1,4 @@
+package salesforce.code_samples.Java.timesheet;
 String accessToken = "your_access_token_here"; // Replace with your actual access token
 String apiUrl = "https://your_instance.salesforce.com/services/apexrest/TimesheetLesson/"; // Replace with your Salesforce instance API URL
 String jsonInputString = "{"

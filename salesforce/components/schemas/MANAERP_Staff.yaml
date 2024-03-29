@@ -1,0 +1,109 @@
+type: object
+properties:
+  totalSize:
+    description: Total number of records
+    type: integer
+    example: 1
+  done:
+    description: Indicates whether the query is complete
+    type: boolean
+    example: true
+  records:
+    type: array
+    items:
+      type: object
+      properties:
+        attributes:
+          type: object
+          properties:
+            type:
+              description: Salesforce Object Type / Salesforceオブジェクトタイプ
+              type: string
+              example: "Contact"
+            url:
+              description: Salesforce Record URL / SalesforceレコードURL
+              type: string
+              example: "/services/data/v60.0/sobjects/Contact/0035h00001HrTwuAAF"
+        Id:
+          description: Salesforce RecordId / SalesforceレコードID
+          type: string
+          example: '0035h00001HrTwuAAF'
+        LastName:
+          description: 姓
+          type: string
+          example: 'Pruitt'
+        FirstName:
+          description: 名
+          type: string
+          example: 'Alfonso'
+        MANAERP__Last_Name_Phonetic__c:
+          description: 姓（フリガナ）
+          type: string
+          example: 'Fuller'
+        MANAERP__First_Name_Phonetic__c:
+          description: 名（フリガナ）
+          type: string
+          example: 'Quinn'
+        Email:
+          description: Include @ / @を含む
+          type: string
+          example: 'budalaxaz@mailinator.com'
+        MANAERP__Working_Status__c:
+          description: 在職/退職/休職
+          type: string
+          example: 'Available'
+        MANAERP__Start_Date__c:
+          description: 開始日 yyyy-mm-dd
+          type: string
+          example: '2023-11-15'
+        MANAERP__End_Date__c:
+          description: 終了日 yyyy-mm-dd
+          type: string
+          example: '2023-11-15'
+        CreatedDate:
+          description: 作成日時
+          type: string
+          example: '2023-11-15T04:58:36.000+0000'
+        LastModifiedDate:
+          description: 更新日時
+          type: string
+          example: '2023-12-15T06:58:12.000+0000'
+        MANAERP__Affiliations__r:
+          description: 勤務マスタで設定
+          type: object
+          properties:
+            totalSize:
+              description: Total number of records
+              type: integer
+              example: 1
+            done:
+              description: Indicates whether the query is complete
+              type: boolean
+              example: true
+            records:
+              type: array
+              items:
+                type: object
+                properties:
+                  attributes:
+                    type: object
+                    properties:
+                      type:
+                        description: Salesforce Object Type / Salesforceオブジェクトタイプ
+                        type: string
+                        example: "MANAERP__Affiliation__c"
+                      url:
+                        description: Salesforce Record URL / SalesforceレコードURL
+                        type: string
+                        example: "/services/data/v60.0/sobjects/MANAERP__Affiliation__c/a035h00000fYbIkAAK"
+                  MANAERP__Account__c:
+                    description: '勤務先'
+                    type: string
+                    example: "0015h00001Ww6GoAAJ"
+
+        MANAERP__Eligible_Course__r:
+          description: '教科'
+          type: string
+          example: '物理'
+xml:
+  name: MANAERP_Staff

@@ -12,42 +12,78 @@ get:
         type: string
       example: 'Bearer 00D5j00000Chdce!ARQAQLbZTaeGTECOqA_SAoceBcXPzIPti.JGShuWWDhVrGxf_yFXgFmMluZVlQxVsYPOLUNTFRfoWpGFY5bmrqZUKt2gw4Lc'
     - name: start_date
-      in: path
+      in: query
       required: true
       description: Get the order being updated from start_date.
       schema:
         type: datetime
         example: '2024-03-05T00:00:00Z'
     - name: end_date
-      in: path
+      in: query
       required: true
       description: Get the order being updated till end_date.
       schema:
         type: datetime
         example: '2024-04-05T00:00:00Z'
+    - name: limit
+      in: query
+      description: The maximum number of results to return.
+      schema:
+        type: integer
+        default: 100
+        maximum: 1000
+        example: 100
+    - name: cursor
+      in: query
+      description: The cursor for the next set of results.
+      schema:
+        type: string
+        nullable: true
+        required: false
+        example: '507f1f77bcf86cd799439011'
   x-codeSamples:
     - lang: 'curl'
       source: |
-        curl https://your-instance.salesforce.com/services/apexrest/Order/updated/?start_date=2024-03-05T00:00:00Z&end_date=2024-04-05T00:00:00Z \
+        curl https://your-instance.salesforce.com/services/apexrest/Order/updated/?start_date=2024-03-05T00:00:00Z&end_date=2024-04-05T00:00:00Z&limit=100 \
         -H "Authorization: Bearer <access_token>" \
         -H "Content-Type: application/json"
 
+        # Get the next 100 packages
+        curl https://your-instance.salesforce.com/services/apexrest/StudentCourseSubscription/getList?start_date=2024-03-05T00:00:00Z&end_date=2024-04-05T00:00:00Z&limit=100&curosr=507f1f77bcf86cd799439011 \
+        -H "Authorization: Bearer <access_token>" \
+        -H "Content-Type: application/json"
   responses:
     '200':
       description: A specific package that match the criteria.
       content:
         application/json:
           schema:
-            $ref: ../../components/schemas/StudentCourseSubscription.yaml
+            type: object
+            properties:
+              items:
+                type: array
+                items:
+                  $ref: ../../components/schemas/StudentCourseSubscription.yaml
+              next_cursor:
+                type: string
+                description: The cursor for the next set of results.
+                nullable: true
+                example: '507f1f77bcf86cd799439011'
     '400':
-      description: Bad request. Possible reasons include missing required fields or incorrect values.
+      $ref: '../../components/response/error.yaml#/400'
     '401':
-      description: Unauthorized. Authentication credentials are missing or incorrect.
+      $ref: '../../components/response/error.yaml#/401'
     '403':
-      description: Forbidden. You do not have permission to access the requested resource.
+      $ref: '../../components/response/error.yaml#/403'
     '404':
-      description: Not found. The specified resource does not exist.
+      $ref: '../../components/response/error.yaml#/404'
     '405':
-      description: Method not allowed. The method specified in the request is not allowed.
+      $ref: '../../components/response/error.yaml#/405'
+    '408':
+      $ref: '../../components/response/error.yaml#/408'
     '429':
-      description: Too many requests. The request was rejected because the rate limit has been exceeded.
+      $ref: '../../components/response/error.yaml#/429'
+    '500':
+      $ref: '../../components/response/error.yaml#/500'
+    '503':
+      $ref: '../../components/response/error.yaml#/503'

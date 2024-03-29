@@ -1,0 +1,52 @@
+get:
+  tags:
+    - User
+  summary: Find Students By Ids
+  description: >-
+    Retrieves Students data from Manabie. This can be a single Students or multiple Students request.
+  parameters:
+    - name: access_token
+      in: header
+      required: true
+      schema:
+        type: string
+      example: Bearer 00D5j00000Chdce!ARQAQLbZTaeGTECOqA_SAoceBcXPzIPti.JGShuWWDhVrGxf_yFXgFmMluZVlQxVsYPOLUNTFRfoWpGFY5bmrqZUKt2gw4Lc
+    - name: q
+      in: query
+      required: true
+      description: Student query with list of Student Ids.
+      schema:
+        type: string
+        example: SELECT Id, LastName, FirstName, MANAERP__Last_Name_Phonetic__c, MANAERP__First_Name_Phonetic__c, Email, MANAERP__Username__c, GenderIdentity, MANAERP__Tag__c, MANAERP__Grade__r.MANAERP__Partner_Internal_Id__c, MANAERP__Grade__r.Name, CreatedDate, LastModifiedDate, (SELECT MANAERP__Enrollment_Status__c, MANAERP__Enrollment_Start_Date__c, MANAERP__Location__c FROM MANAERP__Enrollments__r), (SELECT MANAERP__School__c, MANAERP__School__r.Name FROM MANAERP__School_Histories__r) FROM Contact WHERE RecordType.DeveloperName = 'Student' AND Id IN ('0035h00001OwcHZAAZ','0035h00001OwcHZAAZ')
+  x-codeSamples:
+    - lang: 'curl'
+      source: |
+        curl --location 'https://staging-manabie.my.salesforce.com/services/data/v60.0/query/?q=SELECT%20Id%2C%20LastName%2C%20FirstName%2C%20MANAERP__Last_Name_Phonetic__c%2C%20MANAERP__First_Name_Phonetic__c%2C%20Email%2C%20MANAERP__Username__c%2C%20GenderIdentity%2C%20MANAERP__Tag__c%2C%20MANAERP__Grade__r.MANAERP__Partner_Internal_Id__c%2C%20MANAERP__Grade__r.Name%2C%20CreatedDate%2C%20LastModifiedDate%2C%20(SELECT%20MANAERP__Enrollment_Status__c%2C%20MANAERP__Enrollment_Start_Date__c%2C%20MANAERP__Location__c%20FROM%20MANAERP__Enrollments__r)%2C%20(SELECT%20MANAERP__School__c%2C%20MANAERP__School__r.Name%20FROM%20MANAERP__School_Histories__r)%20FROM%20Contact%20WHERE%20RecordType.DeveloperName%20%3D%20%27Student%27%20AND%20Id%20IN%20(%270035h00001OwcHZAAZ%27%2C%270035h00001OwcHZAAZ%27)' \
+        --header 'Content-Type: application/json' \
+        --header 'Authorization: Bearer 00D5h000008tozT!ARgAQCeEntb8SdMIGJZkUI3RMYlXAxAHdLfeNg3N.YZP7o2Yx6t8jBXAPqPm6muRdqKaNzqGwUX3386fwF3a9lmbKDRWwJg_' \
+        --header 'Cookie: BrowserId=nSWJoj7LEe6CKW252xCFWA; CookieConsentPolicy=0:1; LSKey-c$CookieConsentPolicy=0:1'
+  responses:
+    '200':
+      description: A specific package that match the criteria.
+      content:
+        application/json:
+          schema:
+            $ref: ../../components/schemas/MANAERP_Student.yaml
+    '400':
+      $ref: '../../components/response/error.yaml#/400'
+    '401':
+      $ref: '../../components/response/error.yaml#/401'
+    '403':
+      $ref: '../../components/response/error.yaml#/403'
+    '404':
+      $ref: '../../components/response/error.yaml#/404'
+    '405':
+      $ref: '../../components/response/error.yaml#/405'
+    '408':
+      $ref: '../../components/response/error.yaml#/408'
+    '429':
+      $ref: '../../components/response/error.yaml#/429'
+    '500':
+      $ref: '../../components/response/error.yaml#/500'
+    '503':
+      $ref: '../../components/response/error.yaml#/503'

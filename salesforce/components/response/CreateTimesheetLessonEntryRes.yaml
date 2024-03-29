@@ -1,0 +1,78 @@
+content:
+  application/json:
+    schema:
+      description: Timesheet Lesson Entry
+      title: Timesheet Lesson Entry
+      type: object
+      required:
+        - staff_id
+        - lesson_status
+        - lesson_method
+        - lesson_date
+        - start_time
+        - end_time
+        - location_id
+        - external_lesson_id
+      properties:
+        entries:
+          type: array
+          items:
+            type: object
+            properties:
+              is_success:
+                type: boolean
+              error_message:
+                type: string
+              data:
+                type: object
+                properties:
+                  attributes:
+                    type: object
+                    properties:
+                      type:
+                        type: string
+                      url:
+                        type: string
+                  MANAERP__Timesheet__c:
+                    type: string
+                  MANAERP__Lesson_Start_Time__c:
+                    type: string
+                  MANAERP__Lesson_End_Time__c:
+                    type: string
+                  MANAERP__Lesson_Method__c:
+                    type: string
+                  MANAERP__External_Lesson_Status__c:
+                    type: string
+                  MANAERP__Remarks__c:
+                    type: string
+                  MANAERP__External_Lesson_Id__c:
+                    type: string
+                  MANAERP__Course__c:
+                    type: string
+                  RecordTypeId:
+                    type: string
+                  MANAERP__Create_Method__c:
+                    type: string
+                  Id:
+                    type: string
+    example:
+      - is_success: true
+        error_message: ''
+        data:
+          attributes:
+            type: 'Timesheet_Lesson_Entry__c'
+            url: '/services/data/v60.0/sobjects/Timesheet_Lesson_Entry__c/a0H5h0000008ZQzEAM'
+          MANAERP__Timesheet__c: 'a0G5h0000008ZQzEAM'
+          MANAERP__Lesson_Start_Time__c: '2023-11-15T10:00:00.000Z'
+          MANAERP__Lesson_End_Time__c: '2023-11-15T11:00:00.000Z'
+          MANAERP__Lesson_Method__c: 'Individual'
+          MANAERP__External_Lesson_Status__c: 'Completed'
+          MANAERP__Remarks__c: 'staff 003H4000003HFmwIAG-5'
+          MANAERP__External_Lesson_Id__c: 'external_lesson_id_7-5'
+          MANAERP__Course__c: 'a0F5h0000008ZQzEAM'
+          RecordTypeId: '0125h0000008ZQzEAM'
+          MANAERP__Create_Method__c: 'API'
+          Id: 'a0H5h0000008ZQzEAM'
+      - is_success: false
+        error_message: "duplicate value found: MANAERP__Composite_Key__c duplicates value on record with id: a1dH4000000Ay3cIAC, MANAERP__External_Lesson_Id__c duplicates value on record with id: a1dH4000000Ay3cIAC"
+        data: null
