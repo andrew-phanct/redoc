@@ -1,0 +1,10 @@
+type: object
+properties:
+  code:
+    description: Successful response code
+    type: integer
+    format: int32
+    example: 200
+  message:
+    type: string
+    example: Object is successfully created

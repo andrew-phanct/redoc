@@ -1,0 +1,66 @@
+type: object
+properties:
+  course_id:
+    description: manabie UUID
+    type: string
+    maxLength: 50
+    example: '01H53KD96RHSXJSWZ4'
+  name:
+    description: |
+      Name of course
+      コース名
+    type: string
+    example: 'A'
+  course_type_id:
+    description: 通常または季節ごとのコースタイプ コースタイプマスターで異なるコースタイプを設定できる
+    type: string
+  is_archived:
+    description: |
+      0 or 1. 1 means course is not used'
+      0 または 1 1はコースが使用されていないことを意味する
+    type: integer
+    example: 0
+  remarks:
+    description: |
+      Free text
+      フリーテキスト
+    type: string
+    example: 'abc'
+  teaching_method:
+    description: |
+      個別（individual）= 0
+      集団（group）= 1
+    type: integer
+    example: 0
+  preparation_time:
+    description: |
+      in minutes
+      分単位
+    type: integer
+    example: 30
+  break_time:
+    description: |
+      in minutes
+      分単位
+    type: integer
+    example: 60
+  grade_id:
+    description: |
+      manabie UUID e.g. Grade 9
+      manabie UUID 例：中学3年生
+    type: string
+    example: 'XJSWZ4WYQ4S9CX'
+  subject_id:
+    description: |
+      manabie UUID e.g. English
+      manabie UUID 例）英語
+    type: string
+    example: 'abc123'
+  created_date:
+    type: string
+    example: '24/11/2023, 1:27 pm'
+  updated_date:
+    type: string
+    example: '7/2/2024, 9:43 am'
+xml:
+  name: Course

@@ -1,0 +1,106 @@
+get:
+  tags:
+    - Location
+  summary: Get Locations
+  description: >-
+    Retrieves accounts with account_type set to 'location'.
+  parameters:
+    - name: access_token
+      in: header
+      required: true
+      schema:
+        type: string
+      example: 'Bearer 00D5j00000Chdce!ARQAQLbZTaeGTECOqA_SAoceBcXPzIPti.JGShuWWDhVrGxf_yFXgFmMluZVlQxVsYPOLUNTFRfoWpGFY5bmrqZUKt2gw4Lc'
+    - name: id
+      in: path
+      required: true
+      description: Filter the account with location type.
+      schema:
+        type: string
+        example: location
+  x-codeSamples:
+    - lang: 'curl'
+      source: |
+        curl https://your-instance.salesforce.com/services/apexrest/Location/01GJHKWAM23B3FJDWY9S1QKBCG \
+        -H "Authorization: Bearer <access_token>" \
+        -H "Content-Type: application/json"
+
+  responses:
+    '200':
+      description: A specific location that match the criteria.
+      content:
+        application/json:
+          schema:
+            $ref: ../../components/schemas/Location.yaml
+    '400':
+      description: Bad request. Possible reasons include missing required fields or incorrect values.
+    '401':
+      description: Unauthorized. Authentication credentials are missing or incorrect.
+    '403':
+      description: Forbidden. You do not have permission to access the requested resource.
+    '404':
+      description: Not found. The specified resource does not exist.
+    '405':
+      description: Method not allowed. The method specified in the request is not allowed.
+    '429':
+      description: Too many requests. The request was rejected because the rate limit has been exceeded.
+# post:
+#   tags:
+#     - Location
+#   summary: Updates a pet in the store with form data
+#   description: ''
+#   operationId: updatePetWithForm
+#   parameters:
+#     - name: petId
+#       in: path
+#       description: ID of pet that needs to be updated
+#       required: true
+#       schema:
+#         type: integer
+#         format: int64
+#   responses:
+#     '405':
+#       description: Invalid input
+#   security:
+#     - petstore_auth:
+#         - write:pets
+#         - read:pets
+#   requestBody:
+#     content:
+#       application/x-www-form-urlencoded:
+#         schema:
+#           type: object
+#           properties:
+#             name:
+#               description: Updated name of the pet
+#               type: string
+#             status:
+#               description: Updated status of the pet
+#               type: string
+# delete:
+#   tags:
+#     - Location
+#   summary: Deletes a pet
+#   description: ''
+#   operationId: deletePet
+#   parameters:
+#     - name: api_key
+#       in: header
+#       required: false
+#       schema:
+#         type: string
+#       example: Bearer <TOKEN>
+#     - name: petId
+#       in: path
+#       description: Pet id to delete
+#       required: true
+#       schema:
+#         type: integer
+#         format: int64
+#   responses:
+#     '400':
+#       description: Invalid pet value
+#   security:
+#     - petstore_auth:
+#         - write:pets
+#         - read:pets

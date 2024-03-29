@@ -11,20 +11,20 @@ get:
       schema:
         type: string
       example: 'Bearer 00D5j00000Chdce!ARQAQLbZTaeGTECOqA_SAoceBcXPzIPti.JGShuWWDhVrGxf_yFXgFmMluZVlQxVsYPOLUNTFRfoWpGFY5bmrqZUKt2gw4Lc'
-    - name: id
-      in: path
+    - name: q
+      in: query
       required: true
       description: Staff Id.
       schema:
         type: string
-        example: '0012v00002Qn3ZAAAZ'
+        example: SELECT Id, LastName, FirstName, MANAERP__Last_Name_Phonetic__c, MANAERP__First_Name_Phonetic__c, Email, MANAERP__Working_Status__c, MANAERP__Start_Date__c, MANAERP__End_Date__c, CreatedDate, LastModifiedDate, (SELECT MANAERP__Account__c FROM MANAERP__Affiliations__r), (SELECT MANAERP__Course_Master__c FROM MANAERP__Eligible_Course__r) FROM Contact WHERE RecordType.DeveloperName = 'Staff' AND ID = '0035h00001HrTwuAAF'
   x-codeSamples:
     - lang: 'curl'
       source: |
-        curl https://your-instance.salesforce.com/services/apexrest/Staff/01GJHKWAM23B3FJDWY9S1QKBCG \
-        -H "Authorization: Bearer <access_token>" \
-        -H "Content-Type: application/json"
-
+        curl --location 'https://staging-manabie.my.salesforce.com/services/data/v60.0/query/?q=SELECT%20Id%2C%20LastName%2C%20FirstName%2C%20MANAERP__Last_Name_Phonetic__c%2C%20MANAERP__First_Name_Phonetic__c%2C%20Email%2C%20MANAERP__Working_Status__c%2C%20MANAERP__Start_Date__c%2C%20MANAERP__End_Date__c%2C%20CreatedDate%2C%20LastModifiedDate%2C%20(SELECT%20MANAERP__Account__c%20FROM%20MANAERP__Affiliations__r)%2C%20(SELECT%20MANAERP__Course_Master__c%20FROM%20MANAERP__Eligible_Course__r)%20FROM%20Contact%20WHERE%20RecordType.DeveloperName%20%3D%20%27Staff%27%20AND%20ID%20%3D%20%270035h00001HrTwuAAF%27' \
+        --header 'Content-Type: application/json' \
+        --header 'Authorization: Bearer 00D5h000008tozT!ARgAQCeEntb8SdMIGJZkUI3RMYlXAxAHdLfeNg3N.YZP7o2Yx6t8jBXAPqPm6muRdqKaNzqGwUX3386fwF3a9lmbKDRWwJg_' \
+        --header 'Cookie: BrowserId=nSWJoj7LEe6CKW252xCFWA; CookieConsentPolicy=0:1; LSKey-c$CookieConsentPolicy=0:1'
   responses:
     '200':
       description: A specific package that match the criteria.
@@ -33,14 +33,20 @@ get:
           schema:
             $ref: ../../components/schemas/Staff.yaml
     '400':
-      description: Bad request. Possible reasons include missing required fields or incorrect values.
+      $ref: '../../components/response/error.yaml#/400'
     '401':
-      description: Unauthorized. Authentication credentials are missing or incorrect.
+      $ref: '../../components/response/error.yaml#/401'
     '403':
-      description: Forbidden. You do not have permission to access the requested resource.
+      $ref: '../../components/response/error.yaml#/403'
     '404':
-      description: Not found. The specified resource does not exist.
+      $ref: '../../components/response/error.yaml#/404'
     '405':
-      description: Method not allowed. The method specified in the request is not allowed.
+      $ref: '../../components/response/error.yaml#/405'
+    '408':
+      $ref: '../../components/response/error.yaml#/408'
     '429':
-      description: Too many requests. The request was rejected because the rate limit has been exceeded.
+      $ref: '../../components/response/error.yaml#/429'
+    '500':
+      $ref: '../../components/response/error.yaml#/500'
+    '503':
+      $ref: '../../components/response/error.yaml#/503'

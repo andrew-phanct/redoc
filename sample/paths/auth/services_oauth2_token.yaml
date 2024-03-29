@@ -1,0 +1,54 @@
+post:
+  tags:
+    - Authentication
+  summary: Obtain an access token
+  description: >-
+    Assume that we have already obtained a JWT bearer token from Salesforce Identity.
+    This request is to obtain an access token using the JWT bearer token and the access token can then be used to authorize other API requests.
+  requestBody:
+    required: true
+    content:
+      application/x-www-form-urlencoded:
+        schema:
+          type: object
+          properties:
+            grant_type:
+              type: string
+              description: Grant type parameter. Must be "urn:ietf:params:oauth:grant-type:jwt-bearer" for JWT bearer token flow.
+              example: urn:ietf:params:oauth:grant-type:jwt-bearer
+            assertion:
+              type: string
+              description: The JWT bearer token.
+          required:
+            - grant_type
+            - assertion
+  responses:
+    '200':
+      description: Access token generated successfully.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              access_token:
+                type: string
+                description: The access token to be used for subsequent requests.
+              token_type:
+                type: string
+                example: Bearer
+              expires_in:
+                type: integer
+                description: The number of seconds before the token expires.
+              scope:
+                type: string
+                description: The scope of the access token.
+              instance_url:
+                type: string
+            required:
+              - access_token
+              - token_type
+              - expires_in
+    '400':
+      description: Bad request. Possible reasons include missing required fields or incorrect values.
+    '401':
+      description: Authentication failed. The provided JWT is invalid.

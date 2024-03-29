@@ -1,0 +1,6 @@
+type: array
+properties:
+  location:
+    $ref: ./Location.yaml
+xml:
+  name: Location

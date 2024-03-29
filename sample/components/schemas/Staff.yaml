@@ -1,0 +1,78 @@
+type: object
+properties:
+  manabie_staff_id:
+    description: Manabie UUID
+    type: string
+    example: 'UniqueManabieStaffID'
+  last_name:
+    description: 姓
+    type: string
+    example: '田中'
+  first_name:
+    description: 名
+    type: string
+    example: '太郎'
+  last_name_phonetic:
+    description: 姓（フリガナ）
+    type: string
+    example: 'タナカ'
+  first_name_phonetic:
+    description: 名（フリガナ）
+    type: string
+    example: 'タロウ'
+  email:
+    description: Include @
+    type: string
+    example: 'tarou.tanaka@example.com'
+  primary_phone_number:
+    description: 主要電話番号
+    type: string
+    example: '090-1234-5678'
+  secondary_phone_number:
+    description: 予備電話番号
+    type: string
+    example: '080-1234-5678'
+  birthdate:
+    description: 生年月日 yyyy/mm/dd
+    type: string
+    example: '1985/01/23'
+  gender:
+    description: '1 - 男 Male, 2 - 女 Female'
+    type: integer
+    example: 1
+  working_status:
+    description: 在職/退職/休職
+    type: string
+    example: '在職'
+  start_date:
+    description: 開始日 yyyy/mm/dd
+    type: string
+    example: '2020/04/01'
+  end_date:
+    description: 終了日 yyyy/mm/dd
+    type: string
+    example: '2023/03/31'
+  location:
+    description: 勤務マスタで設定
+    type: string
+    example: '東京オフィス'
+  staff_tag:
+    description: タグマスタで設定
+    type: string
+    example: 'リーダー'
+  remarks:
+    description: スタッフの備考とアクセス可能な拠点を定義
+    type: string
+    example: '担当マネージャー'
+  user_group:
+    description: ユーザーグループ
+    type: string
+    example: '教師グループ'
+  teaching_subject_id:
+    description: 担当可能な教科を設定
+    type: array
+    items:
+      type: string
+    example: ['subject123', '物理']
+xml:
+  name: Staff

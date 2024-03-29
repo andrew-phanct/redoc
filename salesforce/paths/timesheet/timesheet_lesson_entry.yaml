@@ -1,0 +1,42 @@
+post:
+  tags:
+    - Timesheet
+  summary: Add a new timesheet lesson entry
+  description: Add a new timesheet lesson entry
+  operationId: addTimesheetLessonEntry
+  parameters:
+    - name: access_token
+      in: header
+      required: true
+      schema:
+        type: string
+      example: 'Bearer 00D5j00000Chdce!ARQAQLbZTaeGTECOqA_SAoceBcXPzIPti.JGShuWWDhVrGxf_yFXgFmMluZVlQxVsYPOLUNTFRfoWpGFY5bmrqZUKt2gw4Lc'
+  requestBody:
+    $ref: ../../components/requestBodies/CreateTimesheetLessonEntryReq.yaml
+    required: true
+  responses:
+    '200':
+      description: successful operation
+      $ref: ../../components/response/CreateTimesheetLessonEntryRes.yaml
+    '400':
+      $ref: '../../components/response/error.yaml#/400'
+    '401':
+      $ref: '../../components/response/error.yaml#/401'
+    '403':
+      $ref: '../../components/response/error.yaml#/403'
+    '404':
+      $ref: '../../components/response/error.yaml#/404'
+    '405':
+      $ref: '../../components/response/error.yaml#/405'
+    '408':
+      $ref: '../../components/response/error.yaml#/408'
+    '429':
+      $ref: '../../components/response/error.yaml#/429'
+    '500':
+      $ref: '../../components/response/error.yaml#/500'
+    '503':
+      $ref: '../../components/response/error.yaml#/503'
+  x-codeSamples:
+    - lang: Java
+      source:
+        $ref: ../../code_samples/Java/timesheet/post.java

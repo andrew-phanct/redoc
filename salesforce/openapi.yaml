@@ -1,30 +1,9 @@
 openapi: 3.1.0
 servers:
-  - url: //login.salesforce.com/services/data/v52.0
-    description: Production server
-  - url: //test.salesforce.com/services/data/v52.0
+  - url: //staging-manabie.my.salesforce.com/
     description: Sandbox server
 info:
-  description: >
-    # Introduction
-
-    This API is documented in **OpenAPI format** and is based on
-
-    Salesforce's RESTful API. It was designed to allow developers to create,
-    retrieve, update or delete records, such as accounts, leads, and custom
-    objects.
-
-    # Cross-Origin Resource Sharing
-
-    This API features Cross-Origin Resource Sharing (CORS) implemented in
-    compliance with  [W3C spec](https://www.w3.org/TR/cors/).
-
-    And that allows cross-domain communication from the browser.
-
-    All responses have a wildcard same-origin which makes them completely public
-    and accessible to everyone, including any code on any site.
-
-  version: 1.0.0
+  version: 0.1.1
   title: Manabie API Documentation
   termsOfService: http://swagger.io/terms/
     <SecurityDefinitions />
@@ -38,23 +17,23 @@ info:
 tags:
   - name: Authentication
     description: >
-      Salesforce API uses OAuth 2.0 JWT Bearer Token Flow for Server-to-Server
-      integration. This authentication method is designed for server-to-server
-      scenarios, bypassing user interaction. It allows a client application to
-      directly authenticate to the Salesforce server using a digital certificate
-      and a JSON Web Token (JWT) assertion.
-
-
-      The client application first signs a JWT with its private key, then sends
-      the signed JWT in a request to the Salesforce server. The server verifies
-      the JWT and issues an access token to the client application. The client
-      application can then use the access token to authenticate to the
-      Salesforce server on behalf of the user or the application itself.
-
-
-      For generating the JWT Bearer token, please refer to the [Salesforce
-      documentation](https://help.salesforce.com/s/articleView?id=sf.remoteaccess_oauth_jwt_flow.htm&language=en_US&type=5)
+      Salesforce API uses OAuth 2.0 Client Credentials Flow for Server-to-Server integration.
+      This authentication method is designed for server-to-server scenarios, bypassing user interaction.
+      It allows a client application to directly authenticate to the Salesforce server using its client ID and client secret.
+      <br />
+      <br />
+      The client application first sends its client ID and client secret in a request to the Salesforce server.
+      The server verifies the client credentials and issues an access token to the client application.
+      The client application can then use the access token to authenticate to the Salesforce server on behalf of the application itself.
+      <br />
+      <br />
+      For generating the access token using Client Credentials Flow, please refer to the [Salesforce
+      documentation](https://help.salesforce.com/s/articleView?id=sf.remoteaccess_oauth_client_credentials_flow.htm&type=5)
       for the full implementation.
+  - name: Error Codes
+    description: >-
+      This section provides a list of error codes that may be returned by the API.
+      Each error code is accompanied by a description of the error and possible solutions.
   - name: Location
     description: >-
       This section pertains to all APIs related to your location data. It may
@@ -65,13 +44,40 @@ tags:
   - name: Package
     description: Information about a product package within an academic year.
   - name: Course
-    description: Information about a course master.
+    description: |
+      This section pertains to all APIs related to your course data. It may
+      include APIs for creating, retrieving, updating, and deleting course
+      objects, as well as APIs for querying course data based on specific
+      criteria. Each course object may contain details such as course name,
+      description, and other relevant information.
   - name: Order
-    description: Operations about Order
+    description: |
+      This section pertains to all APIs related to your order data. It may
+      include APIs for creating, retrieving, updating, and deleting order
+      objects, as well as APIs for querying order data based on specific
+      criteria. Each order object may contain details such as order number,
+      date, and other relevant information.
+  - name: Invoice
+    description: |
+      This section pertains to all APIs related to your invoice data. It may
+      include APIs for creating, retrieving, updating, and deleting invoice
+      objects, as well as APIs for querying invoice data based on specific
+      criteria. Each invoice object may contain details such as invoice number,
+      date, and other relevant information.
   - name: User
-    description: Operations about user
+    description: |
+      This section pertains to all APIs related to your user data. It may
+      include APIs for creating, retrieving, updating, and deleting user
+      objects, as well as APIs for querying user data based on specific
+      criteria. Each user object may contain details such as name, email,
+      and other relevant information.
   - name: Timesheet
-    description: Operations about user
+    description: |
+      This section pertains to all APIs related to your timesheet data. It may
+      include APIs for creating, retrieving, updating, and deleting timesheet
+      objects, as well as APIs for querying timesheet data based on specific
+      criteria. Each timesheet object may contain details such as date, time,
+      and other relevant information.
   - name: Webhooks
     description: Everything about your Webhooks
   - name: CourseModel
@@ -85,11 +91,11 @@ tags:
   - name: StudentModel
     x-displayName: Student
     description: |
-      <SchemaDefinition schemaRef="#/components/schemas/Student" />
+      <SchemaDefinition schemaRef="#/components/schemas/MANAERP_Student" />
   - name: StaffModel
     x-displayName: Staff
     description: |
-      <SchemaDefinition schemaRef="#/components/schemas/Staff" />
+      <SchemaDefinition schemaRef="#/components/schemas/MANAERP_Staff" />
 x-tagGroups:
   - name: General
     tags:
@@ -103,9 +109,10 @@ x-tagGroups:
   - name: User Management
     tags:
       - User
-  - name: Order Management
+  - name: Invoice & Order Management
     tags:
       - Order
+      - Invoice
   - name: Timesheet Management
     tags:
       - Timesheet
@@ -118,74 +125,33 @@ x-tagGroups:
 security:
   - {}
 paths:
-  /services/oauth2/token:
+  /services/oauth2/token?grant_type=client_credentials&client_id={Client_ID}&client_secret={Client_Secret}:
     $ref: paths/auth/services_oauth2_token.yaml
+  /services/apexrest/Location/getList?limit={limit}&cursor={next_cursor}:
+    $ref: paths/master/location.yaml
   /services/apexrest/Location/:id:
     $ref: paths/master/location_{location_id}.yaml
+  /services/apexrest/Package/getList?limit={limit}&cursor={next_cursor}:
+    $ref: paths/master/package.yaml
   /services/apexrest/Package/:id:
     $ref: paths/master/package_{package_id}.yaml
+  /services/apexrest/Course/getList?limit={limit}&cursor={next_cursor}:
+    $ref: paths/master/course.yaml
   /services/apexrest/Course/:id:
     $ref: paths/master/course_{course_id}.yaml
-  /services/apexrest/Order/:id:
-    $ref: paths/order/student_course_subscription_{id}.yaml
-  /services/apexrest/Order/updated/?start_date={start_date}&end_date={end_date}:
+  /services/apexrest/StudentCourseSubscription/getList?limit={limit}&cursor={next_cursor}:
+    $ref: paths/order/order.yaml
+  /services/apexrest/StudentCourseSubscription/:id:
+    $ref: paths/order/order_{findById}.yaml
+  /services/apexrest/StudentCourseSubscription/updated/?start_date={start_date}&end_date={end_date}:
     $ref: paths/order/order_{findByDateRange}.yaml
-  /services/apexrest/Student/:id:
-    $ref: paths/user/student_{id}.yaml
-  /services/apexrest/Staff/:id:
-    $ref: paths/user/staff_{id}.yaml
-  /services/apexrest/Timesheet/createTimesheetLessonEntry:
-    $ref: paths/timesheet/timesheet_lesson_affiliation.yaml
-components:
-  securitySchemes:
-    petstore_auth:
-      description: |
-        Get access to data while protecting your account credentials.
-        OAuth2 is also a safer and more secure way to give you access.
-      type: oauth2
-      flows:
-        implicit:
-          authorizationUrl: http://petstore.swagger.io/api/oauth/dialog
-          scopes:
-            write:pets: modify pets in your account
-            read:pets: read your pets
-    OAuth2:
-      type: oauth2
-      flows:
-        authorizationCode:
-          authorizationUrl: https://login.salesforce.com/services/oauth2/authorize
-          tokenUrl: https://login.salesforce.com/services/oauth2/token
-          scopes:
-            full: Full access
-            refresh_token: Obtain a refresh token
-            offline_access: Offline access
-
-    api_key:
-      description: >
-        For this sample, you can use the api key `special-key` to test the
-        authorization filters.
-      type: apiKey
-      name: api_key
-      in: header
-  schemas:
-    JWTBearerToken:
-      type: object
-      properties:
-        access_token:
-          type: string
-          description: The access token string as issued by the authorization server.
-        token_type:
-          type: string
-          description: The type of token this is, typically just the string “Bearer”.
-        expires_in:
-          type: integer
-          description: The time in seconds before the access token becomes invalid.
-        scope:
-          type: string
-          description: The scope of the access token.
-        signature:
-          type: string
-          description: The signature of the access token.
-        id_token:
-          type: string
-          description: The ID token JWT string.
+  /services/data/v60.0/query/?q={Get_All_Student_Query}:
+    $ref: paths/user/student.yaml
+  /services/data/v60.0/query/?q={Find_Students_By_Ids_Query}:
+    $ref: paths/user/student_{ids}.yaml
+  /services/data/v60.0/query/?q={Get_All_Staff_Query}:
+    $ref: paths/user/staff.yaml
+  /services/data/v60.0/query/?q={Find_Staff_By_Ids_Query}:
+    $ref: paths/user/staff_{ids}.yaml
+  /services/apexrest/MANAERP/timesheet/v1/createTimesheetLessonEntries:
+    $ref: paths/timesheet/timesheet_lesson_entry.yaml

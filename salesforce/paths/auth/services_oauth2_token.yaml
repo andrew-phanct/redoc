@@ -3,8 +3,13 @@ post:
     - Authentication
   summary: Obtain an access token
   description: >-
-    Assume that we have already obtained a JWT bearer token from Salesforce Identity.
-    This request is to obtain an access token using the JWT bearer token and the access token can then be used to authorize other API requests.
+    This request is to obtain an access token using the ClientID and Client Secret.
+  x-codeSamples:
+    - lang: 'curl'
+      source: |
+        curl --location --request POST 'https://staging-manabie.my.salesforce.com/services/oauth2/token?grant_type=client_credentials&client_id=<Client_ID>&client_secret=<Client_Secret>' \
+        --header 'Cookie: BrowserId=DtAG_ZIFEe6xBCd6qH-vyQ; CookieConsentPolicy=0:1; LSKey-c$CookieConsentPolicy=0:1'
+
   requestBody:
     required: true
     content:
@@ -14,14 +19,20 @@ post:
           properties:
             grant_type:
               type: string
-              description: Grant type parameter. Must be "urn:ietf:params:oauth:grant-type:jwt-bearer" for JWT bearer token flow.
-              example: urn:ietf:params:oauth:grant-type:jwt-bearer
-            assertion:
+              description: Grant type parameter. Must be "client_credentials" for Client Credentials Flow.
+              example: client_credentials
+            client_id:
               type: string
-              description: The JWT bearer token.
+              description: The Client Id provided by Manabie.
+              example: '3MVG9Y6d_Btp4xp7Q2Zz1TQ8klV4.5CtjQxW4SVVU5XIBH6.sQxW4e7QxW4SVVU5XIBH6'
+            client_secret:
+              type: string
+              description: The Client Secret provided by Manabie.
+              example: '1895279925675242004'
           required:
             - grant_type
-            - assertion
+            - client_id
+            - client_secret
   responses:
     '200':
       description: Access token generated successfully.
@@ -33,21 +44,40 @@ post:
               access_token:
                 type: string
                 description: The access token to be used for subsequent requests.
-              token_type:
+                example: 00D5h000008tozT!ARgAFCeEwtb8SdMIGJZkUI3RMYlXAxAHdLfeNg3N.YZP7o2Yx6t8jBXAPqPm6muRdqKaNzqGwUX3386fwF3a9lmbKDRWwJg_
+              signature:
                 type: string
-                example: Bearer
-              expires_in:
-                type: integer
-                description: The number of seconds before the token expires.
+                description: The signature of the access token.
+                example: kpteoCLIy3urNLujpI1xSDVsKpfZ+qnd9gtSFlmhaKo=
               scope:
                 type: string
                 description: The scope of the access token.
+                example: api
               instance_url:
                 type: string
+                description: The instance URL to be used for subsequent requests.
+                example: 'https://staging-manabie.my.salesforce.com'
+              id:
+                type: string
+                description: The ID of the user.
+                example: 'https://staging-manabie.my.salesforce.com/id/00D5h000008tozTEAQ/0055h00000HrTwuAAF'
+              token_type:
+                type: string
+                description: The type of token.
+                example: Bearer
+              issued_at:
+                type: string
+                description: The time the token was issued.
+                example: '1711678615337'
             required:
               - access_token
               - token_type
               - expires_in
+              - scope
+              - instance_url
+              - id
+              - signature
+              - issued_at
     '400':
       description: Bad request. Possible reasons include missing required fields or incorrect values.
     '401':

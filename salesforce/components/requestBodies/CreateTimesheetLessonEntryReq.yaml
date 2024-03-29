@@ -1,0 +1,85 @@
+content:
+  application/json:
+    schema:
+      description: Timesheet Lesson Entry
+      title: Timesheet Lesson Entry
+      type: object
+      required:
+        - staff_id
+        - lesson_status
+        - lesson_method
+        - lesson_date
+        - start_time
+        - end_time
+        - location_id
+        - external_lesson_id
+      properties:
+        entries:
+          type: array
+          items:
+            type: object
+            properties:
+              staff_id:
+                description: スタッフID / SF Record Id
+                type: string
+                example: '003H4000003HFmwIAG'
+              lesson_status:
+                description: レッスンステータス / Completed or Cancelled
+                type: string
+                example: 'Completed'
+              lesson_method:
+                description: レッスン方法 / Individual or Group
+                type: string
+                example: 'Individual'
+              lesson_date:
+                description: レッスン日 / yyyy-MM-dd
+                type: string
+                example: '2023-11-15'
+              start_time:
+                description: 開始時間 / HH:mm
+                type: string
+                example: '10:00'
+              end_time:
+                description: 開始時間 / HH:mm
+                type: string
+                example: '11:00'
+              location_id:
+                description: 拠点ID / SF Record Id
+                type: string
+                example: '001H4000005VrMIIA0'
+              remarks:
+                description: 備考 / Remarks
+                type: string
+                example: staff 003H4000003HFmwIAG-5
+              external_lesson_id:
+                description: 外部レッスンID / External Lesson Id
+                type: string
+                example: 'external_lesson_id_7-5'
+              course_id:
+                description: コースID / SF Record Id
+                type: string
+                example: 'a0LH40000008qQeMAI'
+      example:
+        entries:
+          - staff_id: '003H4000003HFmwIAG'
+            lesson_status: 'Completed'
+            lesson_method: 'Individual'
+            lesson_date: '2023-11-15'
+            start_time: '10:00'
+            end_time: '11:00'
+            location_id: '001H4000005VrMIIA0'
+            remarks: 'staff 003H4000003HFmwIAG-5'
+            external_lesson_id: 'external_lesson_id_7-5'
+            course_id: 'a0LH40000008qQeMAI'
+          - staff_id: '003H4000003HFmwIAG'
+            lesson_status: 'Completed'
+            lesson_method: 'Individual'
+            lesson_date: '2023-11-15'
+            start_time: '10:00'
+            end_time: '11:00'
+            location_id: '001H4000005VrMIIA0'
+            remarks: 'staff 003H4000003HFmwIAG-5'
+            external_lesson_id: 'external_lesson_id_7-5'
+            course_id: 'a0LH40000008qQeMAI'
+description: Timesheet Lesson Entry object
+required: true
